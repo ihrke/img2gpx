@@ -1,0 +1,123 @@
+1.  Are the two coordinate system's axes' orthogonal to each other -
+that is, do their own axes remain perpendicular when viewed through
+either coordinate system?
+
+For example,  a Lat/Lon graticule can be superimposed upon a Mercator
+or Miller Map Projection, which are cylindrical projections, so that
+the axes remain orthogonal.  However, the Transverse Mercator or any
+other oblique Mercator, also cylindrical projections, would not be
+considered orthogonal, as the axis of these projections, when super-
+imposed upon a graticule of straight Lat/Lon lines become quite
+curved.
+
+A conical map projection (such as a Lambert), or various map projections
+allowing extremely oblique views, say, as taken from satellites, would
+not map very well at all to cylindrical map projections or the above
+mentioned graticule, using 3 registration coordinates, or perhaps even
+using only a 6 parameter solution.
+
+2.  How large is the area of coverage?
+
+For fairly small areas of coverage, whether or not the systems are
+orthogonal, you might get by with a fairly simple 6 parameter solution
+which only requires 3-pairs of coordinates (3 tuples) to get decent
+results.
+
+For larger areas of coverage in which the systems are non-orthogonal,
+you will probably need to several more pairs of registration coordinates.
+These will be used to "instruct the mathematical solution" as to the
+nature of the relationship between the two systems of axes or coord-
+inates.  In fact, depending upon the two systems of coordinates you
+select, and depending if the area of coverage is fairly large, you
+may have to select a more suitable transformation equation set than
+the classic 6 parameter solution discussed in most texts that intro-
+duce the concept of rotation and scale or the transformation between
+two surfaces.
+
+------------------------------------
+
+The equations I use and have used very often for registration problems,
+are the classic 6 parameter solution, which is described in photogram-
+metric texts as a 2 dimensional conformal affine transformation.
+
+It is
+
+X' = aX + bY + e
+Y' = dX + eY + f
+
+Ax = b
+
+x1' = ax1 + by1 + e
+x2' = ax2 + by2 + e
+x3' = ax3 + by3 + e // to find a, b and e
+
+y1' = cx1 + dy1 + f
+y2' = cx2 + dy2 + f
+y3' = cx3 + dy3 + f // to find c, d and f
+
+
+	 x1 y1 1
+A = x2 y2 1
+	 x3 y3 1
+
+	 y1'
+b = y2'	 
+	 y3'
+
+	 c
+x = d
+	 f
+
+This coefficients a, b, d, and e inherently solve the relationships
+of rotation and scale (axis independent) between the two surfaces.
+e and f are the translations in X and Y, respectively.  This equation
+set requires a minimum of 3 sets of registration coordinates to solve,
+and more than 3 sets if you are to evaluate any statistics regarding
+accuracy of the resulting solution.
+
+For larger areas of coverage, especially when the two systems being
+solved are non-orthogonal, I tend to use a higher order polynomial.  One
+such example is an 8 parameter:
+
+X' = aX^2 + bXY + cY^2 + e
+Y' = fX^2 + gXY + hY^2 + i
+
+(e and i are X and Y translations respectively; the other coefficients
+inherently accommodate the transformation needs for rotation and scale)
+
+or a 12 parameter:
+
+X' = aX^2 + bX + cXY + eY^2 + f
+Y' = gX^2 + hX + iXy + kY^2 + l
+
+or other variants - depending upon surfaces (you can use terms with
+logs, sins, etc - just depends what functions best model your systems).
+
+The 8 parameter requires a minimum of 4 registration coordinates to obtain
+a mathematical solution, and the 12 parameter requires 6.
+
+If, however, you wish to statistically evaluate the results of your
+registration, based upon your control points, you need to provide, at
+a minimum, one more control point than the solution's minimum requirement.
+
+These extra control points, introducing redundancy into your measurements,
+enables you to perform a least-squares analysis of your solution, which
+has the added effect of minimizing the spatial error about your control
+points.  You would measure statistical accuracy by:
+
+1.  First computing the solution from the calibrated system (From system)
+to the comparator system (the To System).
+
+2.  Taking your original comparator registration coordinates, applying
+the solution obtained in #1 above, and subtracting the results
+(Expected - Observed).  Each of these results is known as a residual.
+A check you can do here is to sum up your residuals when finished.  If
+you did indeed solve the least-squares part of it correctly, the sum of
+your residuals will always equal zero (0).
+
+Compute your standard deviation from your residuals - also known as the
+root mean square error (RMSE).  Compare the RMSE with the type of spatial
+error you want to tolerate.  Please remember that this standard deviation
+will be based upon the Normal Distribution Curve.
+
+
