@@ -1,4 +1,8 @@
-﻿{{{
+﻿This is an example for a valid configuration file.
+
+It is used to process the image below (note that the points marked with an X are the referenced points, the + marked points are calculated by the program and tagged with the names provided in the configuration file).
+
+{{{
 # coordinates of reference points from top to bottom
 [reference]
 61.919367341, 9.70741801
@@ -19,3 +23,5 @@ STORRONDEN
 signal=255, 0, 0
 verbosity=100
 }}}
+
+http://img2gpx.googlecode.com/svn/trunk/examples/rondane_google.png
