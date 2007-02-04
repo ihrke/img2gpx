@@ -1,4 +1,4 @@
-#Manual on how to use the program
+﻿#Manual on how to use the program
 
 =IMG2GPX=
 ==SYNOPSIS==
@@ -45,13 +45,14 @@ Again, a suitable brush for the GIMP can be found in ./brushes.
 
 
 ===Configuration file===
+An example file can be found here: ExampleConfigurationFile.
+
 In the configuration file, lines beginning with # are treated as comments.
 
-Sections are introduced with brackets (e.g. [reference]) and terminated either by EOF or the beginning of another secti
-on.
+Sections are introduced with brackets (e.g. \[reference\]) and terminated either by EOF or the beginning of another section.
 
 ===Sections===
-* [reference]
-; 
+* \[reference\]
+
 
 

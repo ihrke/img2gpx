@@ -1,0 +1,21 @@
+﻿{{{
+# coordinates of reference points from top to bottom
+[reference]
+61.919367341, 9.70741801
+61.878572786, 9.796619732
+61.835215548, 9.731496619
+
+# names for waypoints
+[waypoints]
+RONDSLOTTE
+#Lat: 61.914963825 Lng: 9.851069665
+VINJERONDE
+#Lat: 61.903755963 Lng: 9.848854914
+STORRONDEN
+#Lat: 61.891556019 Lng: 9.861835046
+
+# runtime parameters
+[config]
+signal=255, 0, 0
+verbosity=100
+}}}
