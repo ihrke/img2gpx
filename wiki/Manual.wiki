@@ -1,0 +1,57 @@
+#Manual on how to use the program
+
+=IMG2GPX=
+==SYNOPSIS==
+{{{
+   img2gpx [opts] <png-image> <config-file>
+          png-image    - prepared PNG-image file
+          config-file  - configuration file following specification below
+          opts: 
+             -s int,int,int
+             -v int
+}}}
+
+This program creates a GPX file (http://www.topographix.com/GPX/1) holding the points as read from a png image (usually a scan of a map). The principal aim of the program is to allow the user to pinpoint waypoints on a map (e.g. very detailed hiking maps) and to transfer these waypoints easily on a GPS receiver.
+
+==INSTALLATION==
+
+==USAGE==
+===Preparing the Image===
+In order to georeference your image file, you need to mark at least 3 points in the image with a X-shaped brush like
+{{{
+   +-----+
+   -+---+-
+   --+-+--
+   ---+---
+   --+-+--
+   -+---+-
+   +-----+
+}}}
+
+in the image manipulation program of your choice. A suitable brush for the GIMP (http://www.gimp.org) can be found in ./brushes. You will need the exact polar coordinates (the location of these points on the globe) in order to calculate other points from that data. The more points you specify in that way, the more accurate will be the estimation of the other points. The polar coordinates are specified in the configuration file (see section below).
+
+The unknown points (the ones you would like to georef and get on your GPS-receiver) are marked on the image with a plus-shaped brush like this:
+{{{
+   ---+---
+   ---+---
+   ---+---
+   +++++++
+   ---+---
+   ---+---
+   ---+---
+}}}
+
+Again, a suitable brush for the GIMP can be found in ./brushes.
+
+
+===Configuration file===
+In the configuration file, lines beginning with # are treated as comments.
+
+Sections are introduced with brackets (e.g. [reference]) and terminated either by EOF or the beginning of another secti
+on.
+
+===Sections===
+* [reference]
+; 
+
+
